@@ -1,0 +1,55 @@
+﻿@model List<WidgetManager.Controllers.Employe> 
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css"/>
+<div id="employees_list" class="col-md-4">
+    <h6>@ViewBag.Title</h6><i id="close_widget_btn" class="fa fa-times" aria-hidden="true"></i>
+    <ul class="list-group ">
+        @{foreach (var user in Model)
+            {
+                <li class="item">
+                    <span>#@user.Id</span>                   
+                    <h5>@user.Name @user.LastName</h5>
+                    <h6>@user.Position</h6>
+                </li>
+            }
+        }
+    </ul>
+</div>
+<style>
+#close_widget_btn {
+    float: right;
+    top: 10px;
+    position: absolute;
+    right: 20px;
+}
+#employees_list {
+    position: fixed;
+    float: right;
+    top: 50px;
+    right: 0;
+    height: 100%;
+    z-index:999999;
+    background:#fff;
+    border: 1px solid #0000001f;
+}
+    .list-group {
+    padding-left: 0;
+    margin-bottom: 20px;
+    overflow-y: scroll;
+    max-height: 85%;
+}
+    span{float:right;}
+    ul .item{border-bottom: 1px solid rgba(0,0,44,0.2);}
+</style>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#close_widget_btn").click(function () {
+            $("#employees_list").remove();
+        })
+    });
+</script>
